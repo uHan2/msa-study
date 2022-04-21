@@ -8,20 +8,23 @@ spring:
     gateway:
       routes:
         - id: user-service
-#          uri: http://localhost:8081 # ???? ??, http://localhost:8000/user ? ???? http://localhost:8081 ? ???
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/** # ?? gateway ??? /service1/**? ???? ?? eureka-client-1? ?????? ??
+            - Path=/user-service/**
 #            - Method=GET
           filters:
             - AddRequestHeader=token, 123456
             - AddResponseHeader=authenticated, yes
 
         - id: order-service
-#          uri: http://localhost:8082 # ??? ? ??, http://localhost:8000/order ? ???? http://localhost:8082 ? ???
           uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/order-service/** # ?? gateway ??? /service2/**? ???? ?? eureka-client-2? ?????? ??
+            - Path=/order-service/**
+#            - Method=GET0
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product-service/**
 #            - Method=GET0
 
 eureka:

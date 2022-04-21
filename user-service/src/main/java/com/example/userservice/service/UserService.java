@@ -17,4 +17,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public UserEntity getUser(String userId) {
+        return userRepository.findByUserId(userId);
+    }
+
 }
