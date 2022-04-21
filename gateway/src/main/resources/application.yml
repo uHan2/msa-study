@@ -7,22 +7,22 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: eureka-client-1
+        - id: user-service
 #          uri: http://localhost:8081 # ???? ??, http://localhost:8000/user ? ???? http://localhost:8081 ? ???
-          uri: lb://EUREKA-CLIENT-1
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/service1/** # ?? gateway ??? /service1/**? ???? ?? eureka-client-1? ?????? ??
-            - Method=GET
+            - Path=/user-service/** # ?? gateway ??? /service1/**? ???? ?? eureka-client-1? ?????? ??
+#            - Method=GET
           filters:
             - AddRequestHeader=token, 123456
             - AddResponseHeader=authenticated, yes
 
-        - id: eureka-client-2
+        - id: order-service
 #          uri: http://localhost:8082 # ??? ? ??, http://localhost:8000/order ? ???? http://localhost:8082 ? ???
-          uri: lb://EUREKA-CLIENT-2
+          uri: lb://ORDER-SERVICE
           predicates:
-            - Path=/service2/** # ?? gateway ??? /service2/**? ???? ?? eureka-client-2? ?????? ??
-            - Method=GET
+            - Path=/order-service/** # ?? gateway ??? /service2/**? ???? ?? eureka-client-2? ?????? ??
+#            - Method=GET0
 
 eureka:
   client:
@@ -31,4 +31,4 @@ eureka:
     service-url:
       defaultZone: http://admin:admin@localhost:8761/eureka/
   instance:
-    instance-id: gateway
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
