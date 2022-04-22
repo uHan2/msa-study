@@ -30,9 +30,9 @@ public class ProductController {
         return new ResponseEntity<>(productService.getProductList(), HttpStatus.OK);
     }
 
-    @GetMapping("/products/{productCd}")
-    public ResponseEntity<ProductEntity> getProduct(@PathVariable String productCd) {
-        return new ResponseEntity<>(productService.getProduct(productCd), HttpStatus.OK);
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ProductEntity> getProduct(@PathVariable String productId) {
+        return new ResponseEntity<>(productService.getProduct(productId), HttpStatus.OK);
     }
 
 }

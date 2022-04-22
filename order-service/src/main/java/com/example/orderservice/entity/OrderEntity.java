@@ -28,7 +28,7 @@ public class OrderEntity {
 
     private Integer totalPrice;
 
-    private String productCd;
+    private String productId;
 
     private String userId;
 
@@ -36,7 +36,7 @@ public class OrderEntity {
         this.quantity = orderRequest.getQuantity();
         this.unitPrice = orderRequest.getUnitPrice();
         this.totalPrice = this.quantity * this.unitPrice;
-        this.productCd = orderRequest.getProductCd();
+        this.productId = orderRequest.getProductId();
         this.userId = orderRequest.getUserId();
     }
 }

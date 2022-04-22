@@ -21,7 +21,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String productCd;
+    private String productId;
 
     private String productName;
 

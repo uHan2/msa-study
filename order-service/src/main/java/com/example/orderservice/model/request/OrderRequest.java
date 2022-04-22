@@ -11,8 +11,13 @@ public class OrderRequest {
 
     private Integer unitPrice;
 
-    private String productCd;
+    private Integer totalPrice;
+
+    private String productId;
 
     private String userId;
 
+    private String message = "주문 발생";
+
 }
+

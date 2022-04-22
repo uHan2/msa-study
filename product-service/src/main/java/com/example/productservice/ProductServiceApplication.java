@@ -25,24 +25,24 @@ public class ProductServiceApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		ProductEntity product1 = ProductEntity.builder()
-				.productCd("A")
+				.productId("Apple Macbook")
 				.productName("맥북")
 				.stock(999)
-				.price(1_000_000)
+				.price(200_0000)
 				.build();
 
 		ProductEntity product2 = ProductEntity.builder()
-				.productCd("B")
+				.productId("Samsung Galaxy")
 				.productName("갤럭시")
 				.stock(99)
-				.price(100_000)
+				.price(150_0000)
 				.build();
 
 		ProductEntity product3 = ProductEntity.builder()
-				.productCd("C")
+				.productId("Lg Gram")
 				.productName("그램")
 				.stock(9)
-				.price(10_000)
+				.price(100_0000)
 				.build();
 
 		productRepository.saveAll(Arrays.asList(product1, product2, product3));

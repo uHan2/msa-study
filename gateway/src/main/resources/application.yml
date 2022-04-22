@@ -11,7 +11,6 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
-#            - Method=GET
           filters:
             - AddRequestHeader=token, 123456
             - AddResponseHeader=authenticated, yes
@@ -20,12 +19,11 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-#            - Method=GET0
+
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/product-service/**
-#            - Method=GET0
 
 eureka:
   client:

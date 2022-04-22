@@ -2,6 +2,7 @@ package com.example.orderservice.controller;
 
 import com.example.orderservice.entity.OrderEntity;
 import com.example.orderservice.model.request.OrderRequest;
+import com.example.orderservice.service.KafkaProducerService;
 import com.example.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final KafkaProducerService kafkaProducerService;
 
     @GetMapping("/health-check")
     public String info(@Value("${server.port}") String port) {
@@ -29,6 +31,7 @@ public class OrderController {
     @PostMapping("/{userId}/order")
     public ResponseEntity<OrderEntity> createOrder(@PathVariable String userId, @RequestBody OrderRequest orderRequest) {
         orderRequest.setUserId(userId);
+        kafkaProducerService.send("order-product-topic", orderRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequest));
     }
 

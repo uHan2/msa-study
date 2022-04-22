@@ -6,7 +6,7 @@ spring:
     name: user-service
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:usertestdb
+    url: jdbc:h2:mem:testdb
     username: sa
   jpa:
     generate-ddl: true
