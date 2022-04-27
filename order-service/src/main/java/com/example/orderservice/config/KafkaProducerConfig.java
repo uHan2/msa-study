@@ -13,8 +13,8 @@ import org.springframework.kafka.core.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
-@Configuration
+//@EnableKafka
+//@Configuration
 public class KafkaProducerConfig {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() { //접속하고자 하는 정보 topic
@@ -50,5 +50,7 @@ public class KafkaProducerConfig {
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
+
+
 
 }

@@ -31,7 +31,7 @@ public class OrderController {
     @PostMapping("/{userId}/order")
     public ResponseEntity<OrderEntity> createOrder(@PathVariable String userId, @RequestBody OrderRequest orderRequest) {
         orderRequest.setUserId(userId);
-        kafkaProducerService.send("order-product-topic", orderRequest);
+        kafkaProducerService.send(orderRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequest));
     }
 

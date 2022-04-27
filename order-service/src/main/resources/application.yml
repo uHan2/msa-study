@@ -4,6 +4,15 @@ server:
 spring:
   application:
     name: order-service
+  cloud:
+    stream:
+      bindings:
+        productUpdate-out-0:
+          destination: order-product-topic
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
@@ -22,6 +31,6 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone : http://admin:admin@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
