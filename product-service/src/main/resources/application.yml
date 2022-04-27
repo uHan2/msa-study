@@ -5,8 +5,6 @@ spring:
   application:
     name: product-service
   cloud:
-#    function:
-#      definition: productUpdate
     stream:
       bindings:
         productUpdate-in-0:

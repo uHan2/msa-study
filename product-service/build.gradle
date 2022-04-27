@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -27,13 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-
 	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka'
-	implementation 'org.springframework.cloud:spring-cloud-stream'
-//	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
-	// https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-kafka
-	implementation 'org.springframework.integration:spring-integration-kafka:5.4.13'
-
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
