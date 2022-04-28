@@ -1,7 +1,9 @@
 package com.example.orderservice.controller;
 
 import com.example.orderservice.entity.OrderEntity;
-import com.example.orderservice.model.request.OrderRequest;
+import com.example.orderservice.model.request.CreateOrderRequest;
+import com.example.orderservice.model.response.CancelOrderResponse;
+import com.example.orderservice.model.response.CreateOrderResponse;
 import com.example.orderservice.service.KafkaProducerService;
 import com.example.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -28,13 +30,31 @@ public class OrderController {
         return "order-service 서비스의 기본 동작 Port: {" + port + "}";
     }
 
+    /**
+     * 주문 생성
+     *
+     * @param userId             회원 ID
+     * @param createOrderRequest 수량, 단가, 물품 ID
+     * @return 물품 ID, 회원 ID, 주문 ID
+     */
     @PostMapping("/{userId}/order")
-    public ResponseEntity<OrderEntity> createOrder(@PathVariable String userId, @RequestBody OrderRequest orderRequest) {
-        orderRequest.setUserId(userId);
-        kafkaProducerService.send(orderRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderRequest));
+    public ResponseEntity<CreateOrderResponse> createOrder(@PathVariable String userId, @RequestBody CreateOrderRequest createOrderRequest) {
+        kafkaProducerService.sendCreateOrder(createOrderRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(createOrderRequest, userId));
     }
 
+    @PostMapping("/{userId}/order-cancel/{orderId}")
+    public ResponseEntity<CancelOrderResponse> cancelOrder(@PathVariable String userId, @PathVariable Long orderId) {
+        kafkaProducerService.sendCancelOrder(userId, orderId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.cancelOrder(userId, orderId));
+    }
+
+    /**
+     * 주문 조회
+     *
+     * @param userId 회원 ID
+     * @return 주문 LISt
+     */
     @GetMapping("/{userId}/orders")
     public ResponseEntity<List<OrderEntity>> getOrders(@PathVariable String userId) {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.getOrders(userId));

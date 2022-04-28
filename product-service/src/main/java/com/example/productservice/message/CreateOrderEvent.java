@@ -7,10 +7,12 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductUpdateEvent {
+public class CreateOrderEvent {
 
     private String productId;
 
     private Integer quantity;
+
+    private String message;
 
 }

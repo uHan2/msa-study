@@ -7,17 +7,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OrderRequest {
+public class CreateOrderRequest {
 
     private Integer quantity;
 
     private Integer unitPrice;
 
     private String productId;
-
-    private String userId;
-
-    private String message = "주문 발생";
 
 }
 

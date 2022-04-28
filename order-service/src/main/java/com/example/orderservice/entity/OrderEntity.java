@@ -1,6 +1,6 @@
 package com.example.orderservice.entity;
 
-import com.example.orderservice.model.request.OrderRequest;
+import com.example.orderservice.model.request.CreateOrderRequest;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -32,11 +32,11 @@ public class OrderEntity {
 
     private String userId;
 
-    public OrderEntity(OrderRequest orderRequest) {
-        this.quantity = orderRequest.getQuantity();
-        this.unitPrice = orderRequest.getUnitPrice();
+    public OrderEntity(CreateOrderRequest createOrderRequest, String userId) {
+        this.quantity = createOrderRequest.getQuantity();
+        this.unitPrice = createOrderRequest.getUnitPrice();
         this.totalPrice = this.quantity * this.unitPrice;
-        this.productId = orderRequest.getProductId();
-        this.userId = orderRequest.getUserId();
+        this.productId = createOrderRequest.getProductId();
+        this.userId = userId;
     }
 }
