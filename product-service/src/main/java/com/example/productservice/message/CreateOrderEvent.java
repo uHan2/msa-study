@@ -15,4 +15,8 @@ public class CreateOrderEvent {
 
     private String message;
 
+    private Long orderId;
+
+    private String timestamp;
+
 }

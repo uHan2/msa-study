@@ -7,12 +7,22 @@ spring:
   cloud:
     stream:
       bindings:
-        productUpdate-in-0:
+        decreaseProduct-in-0:
           destination: create-order-topic
           content-type: application/json
+          group: product-consumer
+        cancelOrder-out-0:
+          destination: cancel-order-topic
+          content-type: application/json
+        increaseProduct-in-0:
+          destination: cancel-order-topic
+          content-type: application/json
+          group: product-consumer
       kafka:
         binder:
           brokers: localhost:9092
+    function:
+      definition: increaseProduct;decreaseProduct;
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb

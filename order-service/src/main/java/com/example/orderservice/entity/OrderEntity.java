@@ -3,13 +3,16 @@ package com.example.orderservice.entity;
 import com.example.orderservice.model.request.CreateOrderRequest;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @DynamicUpdate
 @Table(name = "tbl_order")
 @EntityListeners(AuditingEntityListener.class)
@@ -31,6 +34,9 @@ public class OrderEntity {
     private String productId;
 
     private String userId;
+
+    @CreatedDate
+    private LocalDateTime createDate;
 
     public OrderEntity(CreateOrderRequest createOrderRequest, String userId) {
         this.quantity = createOrderRequest.getQuantity();
