@@ -8,21 +8,25 @@ spring:
     stream:
       bindings:
         decreaseProduct-in-0:
-          destination: create-order-topic
+          destination: create-order
           content-type: application/json
           group: product-consumer
-        cancelOrder-out-0:
-          destination: cancel-order-topic
-          content-type: application/json
-        increaseProduct-in-0:
-          destination: cancel-order-topic
+        increaseProductByUser-in-0:
+          destination: cancel-order-by-user
           content-type: application/json
           group: product-consumer
+        increaseProductBySystem-in-0:
+          destination: cancel-order-by-system
+          content-type: application/json
+          group: product-consumer
+        cancelOrderBySystem-out-0:
+          destination: cancel-order-by-system
+          content-type: application/json
       kafka:
         binder:
           brokers: localhost:9092
     function:
-      definition: increaseProduct;decreaseProduct;
+      definition: increaseProductByUser;increaseProductBySystem;decreaseProduct;
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb

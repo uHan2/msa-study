@@ -13,8 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class CancelOrderEvent {
 
-    private EventType eventType;
-
     private Long orderId;
 
     private String productId;
@@ -26,7 +24,6 @@ public class CancelOrderEvent {
     private String timestamp;
 
     public CancelOrderEvent(OrderEntity order) {
-        this.eventType = EventType.USER_CANCEL;
         this.orderId = order.getId();
         this.productId = order.getProductId();
         this.quantity = order.getQuantity();

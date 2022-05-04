@@ -24,7 +24,7 @@ public class KafkaProducerService {
 
     public void sendCancelOrder(OrderEntity orderCancelEvent) {
         CancelOrderEvent event = new CancelOrderEvent(orderCancelEvent);
-        streamBridge.send("cancelOrder-out-0", event);
+        streamBridge.send("cancelOrderByUser-out-0", event);
         log.info("cancelOrderEvent 발행 : " + event);
     }
 }

@@ -16,8 +16,13 @@ public class KafkaConsumerService {
     }
 
     @Bean
-    public Consumer<CancelOrderEvent> increaseProduct(ProductService productService) {
-        return productService::increaseProduct;
+    public Consumer<CancelOrderEvent> increaseProductByUser(ProductService productService) {
+        return productService::increaseProductByUser;
+    }
+
+    @Bean
+    public Consumer<CancelOrderEvent> increaseProductBySystem(ProductService productService) {
+        return productService::increaseProductBySystem;
     }
 
 }

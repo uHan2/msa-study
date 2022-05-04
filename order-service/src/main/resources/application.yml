@@ -7,21 +7,21 @@ spring:
   cloud:
     stream:
       bindings:
-        createOrder-out-0:
-          destination: create-order-topic
+        cancelOrderByUser-out-0:
+          destination: cancel-order-by-user
           content-type: application/json
-        cancelOrder-out-0:
-          destination: cancel-order-topic
-          content-type: application/json
-        cancelOrder-in-0:
-          destination: cancel-order-topic
+        cancelOrderBySystem-in-0:
+          destination: cancel-order-by-system
           content-type: application/json
           group: product-consumer
+        createOrder-out-0:
+          destination: create-order
+          content-type: application/json
       kafka:
         binder:
           brokers: localhost:9092
     function:
-      definition: cancelOrder;
+      definition: cancelOrderBySystem;
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb
