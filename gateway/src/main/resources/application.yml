@@ -25,6 +25,11 @@ spring:
           predicates:
             - Path=/product-service/**
 
+        - id: delivery-service
+          uri: lb://DELIVERY-SERVICE
+          predicates:
+            - Path=/delivery-service/**
+
 eureka:
   client:
     fetch-registry: true
